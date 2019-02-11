@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bankomat</title>
+</head>
+<body>
+
+<!--<?php-->
+
+<!--<form action = "index.php" method="get">-->
+<form action="bankomat.php" method="post">
+    <p>Максимальная сумма, доступная к снятию:
+    <?php
+    echo $sum1;
+    ?>
+    </p>
+    <p>В наличии купюры 5, 10, 20, 50, 100, 200, 500 грн.</p>
+    <p>Введите требуемую сумму для снятия</p>
+    <input type="text" name="sum">
+    <p><input type="submit" value="подтвердить"></p>
+</form>
+
+<!--?>-->
+</body>
+</html>
