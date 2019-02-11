@@ -3,7 +3,8 @@
 
 $sum = $_POST["sum"];
 $max = 50000;
-$sum1 = $max - $sum;
+$sum1 = $max ;
+require_once('index.html');
 
 if ($sum > $max || $sum > $sum1 || $sum % 5 !== 0) {
     echo "Unpossible";
@@ -13,7 +14,7 @@ if ($sum > $max || $sum > $sum1 || $sum % 5 !== 0) {
 //}
 else {
 
-//    for ($i = 0; $i <= $sum; $i++) {
+for ($i = 0; $i <= $sum1; $i++) {
 //    if ($sum >= 500) {
         $a = ($sum - $sum % 500) / 500;
         $a1 = $sum % 500;
@@ -31,7 +32,7 @@ else {
         $g1 = $f1 % 5;
         $sum1 = $max - $sum;
 
-//};
+};
         echo "Your  ";
         echo $sum;
         echo "<br>";
@@ -53,7 +54,4 @@ else {
     }
 //}
 
-//    if ($sum >= 200) {
-//        $b = $sum / 200;
-//        $b1 = $sum % 200;
-//    }
+
