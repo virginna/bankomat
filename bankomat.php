@@ -1,90 +1,53 @@
 <?php
 
+if (!isset($_SESSION['max']))
+    $_SESSION['max'] = 885000;
+$max = $_SESSION['max'];
 
 $sum = $_POST["sum"];
-$max = 885000;
-$sum1 = $max;
+//$max = 885000;
+$sum1 = $sum;
 require_once('index.html');
 
 if (empty($sum)) {
-    echo "Please, enter summ";
+    echo "Введите требуемую сумму";
 } else if (ctype_digit($sum) == false) {
-    echo "Enter integer and positive summ";
+    echo "Введите целое и положительное число";
 } else if ($sum > $max) {
-    echo "Unpossible. Choose less summ";
-} else if ($sum > $sum1) {
-    echo "Unpossible. Choose less summ";
-} else if ($sum < 5) {
-    echo "Unpossible. Summ less than 5";
+    echo "Выдача невозможна. Введите меньшую сумму";
+}
+//else if ($sum > $sum1) {
+//    echo "Выдача невозможна. Введите меньшую сумму";
+//}
+else if ($sum < 5) {
+    echo "Выдача невозможна. Сумма меньше 5";
 } else if ($sum % 5 !== 0) {
-    echo "Unpossible. Summ must aliquot 5";
-}
-//if ($sum % 5 !== 0) {
-//    echo "Enter summ aliquot 5";
-//}
-else {
+    echo "Выдача невозможна. Сумма должна быть кратна 5";
+} else if ($sum > 50000) {
+    echo "Выдача невозможна. Максимальная сумма выдачи в сутки 50000 грн.";
+} else {
+    $ar1 = array(500, 200, 100, 50, 20, 10, 5);
+    for ($i = 0; $i <= 6; $i++) {
+        $a2 = floor($sum / $ar1[$i]);
+//            if ($a2 > 100) {
+//            $a2 = 100;
+//        }
+        $a3 = $sum - $a2 * $ar1[$i];
+        //$a3 = $sum % $ar1[$i];
+        //$a2 = ($sum - $a3) / $ar1[$i];
+        echo "$a2 x $ar1[$i]";
+        echo "<br>";
+        $q7 = 100 - $a2;
+        echo "осталось $q7 купюр по $ar1[$i] грн.";
+        echo "<br>";
 
-//for ($i = 0; $i <= $sum1; $i++) {
-//    if ($sum >= 500) {
-    $a = ($sum - $sum % 500) / 500;
-    $a1 = $sum % 500;
-    $q = 100 - $a;
-    $b = ($a1 - $a1 % 200) / 200;
-    $b1 = $a1 % 200;
-    $q1 = 100 - $b;
-    $c = ($b1 - $b1 % 100) / 100;
-    $c1 = $b1 % 100;
-    $q2 = 100 - $c;
-    $d = ($c1 - $c1 % 50) / 50;
-    $d1 = $c1 % 50;
-    $q3 = 100 - $d;
-    $e = ($d1 - $d1 % 20) / 20;
-    $e1 = $d1 % 20;
-    $q4 = 100 - $e;
-    $f = ($e1 - $e1 % 10) / 10;
-    $f1 = $e1 % 10;
-    $q5 = 100 - $f;
-    $g = ($f1 - $f1 % 5) / 5;
-    $g1 = $f1 % 5;
-    $q6 = 100 - $g;
-    $sum1 = $max - $sum;
-
-//};
-    echo "Your  ";
-    echo $sum;
+        $sum = $a3;
+    }
+    //$q8 = $max - $sum1;
+    $_SESSION['max'] = $_SESSION['max'] - $sum1;
+    $q8 = $_SESSION['max'];
     echo "<br>";
-    echo "$a : 500 grn";
-    echo "<br>";
-    echo "$b : 200 grn";
-    echo "<br>";
-    echo "$c : 100 grn";
-    echo "<br>";
-    echo "$d : 50 grn";
-    echo "<br>";
-    echo "$e : 20 grn";
-    echo "<br>";
-    echo "$f : 10 grn";
-    echo "<br>";
-    echo "$g : 5 grn";
-    echo "<br>";
-    echo "<br>";
-    echo "Bankomat now has $sum1 grn.";
-    echo "<br>";
-    echo "<br>";
-    echo "500 grn. - $q шт.";
-    echo "<br>";
-    echo "200 grn. - $q1 шт.";
-    echo "<br>";
-    echo "100 grn. - $q2 шт.";
-    echo "<br>";
-    echo "50 grn. - $q3 шт.";
-    echo "<br>";
-    echo "20 grn. - $q4 шт.";
-    echo "<br>";
-    echo "10 grn. - $q5 шт.";
-    echo "<br>";
-    echo "5 grn. - $q6 шт.";
+    echo "Остаток в банкомате: $q8 грн.";
 }
-//}
 
 
